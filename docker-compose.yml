@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+    chrome:
+        profiles: ["webdriver"]
+        image: selenium/node-chrome:4.0.0-rc-2-prerelease-20210923
+        shm_size: 2gb
+        volumes:
+            - /dev/shm:/dev/shm
+        depends_on:
+            - selenium-hub
+        environment:
+            - SE_EVENT_BUS_HOST=selenium-hub
+            - SE_EVENT_BUS_PUBLISH_PORT=4442
+            - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+            - SCREEN_WIDTH=1920
+            - SCREEN_HEIGHT=1080
+            - SCREEN_DEPTH=24
+        ports:
+            - "5900:5900"
+
+    selenium-hub:
+        profiles: ["webdriver"]
+        image: selenium/hub:4.0.0-rc-2-prerelease-20210923
+        container_name: selenium-hub
+        ports:
+            - "4442:4442"
+            - "4443:4443"
+            - "4444:4444"
+
+    testrunner:
+        build: .
+#        environment:
+#            AUTH_TOKEN: "${AUTH_TOKEN}"
+#            BASE_URL: "${BASE_URL}"
+#            API_URL: "${API_URL}"
+        volumes:
+            - ./:/usr/src/app/
+            - .gradle:/usr/src/app/.gradle
+volumes:
+    .gradle: {}
+
