@@ -1,4 +1,4 @@
-@api
+@test
 Feature: Demo app for authenticate to catalog
 
   Scenario: Login to a catalog instance
