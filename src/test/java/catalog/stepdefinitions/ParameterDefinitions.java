@@ -1,9 +1,7 @@
-package starter.stepdefinitions;
+package catalog.stepdefinitions;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
-import io.restassured.config.RestAssuredConfig;
-import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
@@ -23,6 +21,7 @@ public class ParameterDefinitions {
 
     @Before
     public void setTheStage() {
+//        SerenityRest.setDefaultParser(Parser.TEXT);
         OnStage.setTheStage(new OnlineCast());
     }
 }
