@@ -13,7 +13,6 @@ import net.serenitybdd.screenplay.Actor;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 
 import net.serenitybdd.screenplay.questions.Presence;
-import net.serenitybdd.screenplay.questions.targets.TheTarget;
 import net.serenitybdd.screenplay.rest.interactions.Ensure;
 import net.serenitybdd.screenplay.rest.interactions.Get;
 import catalog.ui.dashboard.CatalogNavbar;
@@ -23,6 +22,7 @@ import net.thucydides.core.util.EnvironmentVariables;
 
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
 import static org.hamcrest.Matchers.equalTo;
+
 //https://serenity-bdd.github.io/theserenitybook/latest/serenity-screenplay-ensure.html
 public class AuthenticationDefs {
     @Given("{actor} creates a canvas account")
@@ -35,11 +35,10 @@ public class AuthenticationDefs {
     @When("{actor} logs in to catalog")
     public void sheLogsInToCatalog(Actor actor) {
         String password = EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("custom.password");
-        System.out.println(password);
-        System.out.println(System.getProperty("custom.password"));
         actor.attemptsTo(
                 NavigateTo.theCatalogLoginPage(),
-                LogIn.with("adam.szentivanyi+serenity_test@instructure",password));
+                LogIn.with("adam.szentivanyi+serenity_test@instructure", password)
+        );
     }
 
     @Then("{actor} see the catalog homepage")
@@ -55,7 +54,6 @@ public class AuthenticationDefs {
 
     @Given("{actor} sends a health check in API to {string}")
     public void aliceSendsAHealthCheckInAPITo(Actor actor, String endpoint) {
-
         actor.wasAbleTo(Get.resource(endpoint));
     }
 
