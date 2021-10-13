@@ -3,7 +3,9 @@ package catalog.questions;
 import catalog.ui.dashboard.CatalogNavbar;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
+import net.serenitybdd.screenplay.annotations.Subject;
 
+@Subject("the logged in username is '#username'")
 public class LoggedIn implements Question<Boolean>{
 
     private String username;
