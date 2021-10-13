@@ -56,6 +56,9 @@ public class AuthenticationDefs {
         actor.attemptsTo(net.serenitybdd.screenplay.ensure.Ensure
                 .thatTheAnswerTo("Logged in",
                         LoggedIn.with("SerenityTest")).isEqualTo(true));
+
+        actor.should(seeThat(LoggedIn.with("SerenityTest"), equalTo(true))
+                .orComplainWith(NotLoggedInException.class, "User not logged in"));
     }
 
     @Given("{actor} sends a health check in API to {string}")
