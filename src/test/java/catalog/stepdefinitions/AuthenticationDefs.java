@@ -1,5 +1,6 @@
 package catalog.stepdefinitions;
 
+import catalog.questions.LoggedIn;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -46,10 +47,15 @@ public class AuthenticationDefs {
         actor.attemptsTo(net.serenitybdd.screenplay.ensure.Ensure
                 .that(CatalogNavbar.LOGO)
                 .isDisplayed());
+
         actor.should(
                 seeThat(
                         Presence.of(CatalogNavbar.LOGO).asABoolean(),
                         equalTo(true)));
+
+        actor.attemptsTo(net.serenitybdd.screenplay.ensure.Ensure
+                .thatTheAnswerTo("Logged in",
+                        LoggedIn.with("SerenityTest")).isEqualTo(true));
     }
 
     @Given("{actor} sends a health check in API to {string}")

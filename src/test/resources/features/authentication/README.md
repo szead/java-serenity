@@ -1,6 +1,10 @@
-# Authentication(This is a demo feature!!!) 
+## Authentication
+
+(This is a demo feature!!!) 
 This feature is responsible the authentication of the catalog.
+
 ## Canvas auth
+
 When we navigate to the login page of a catalog instance we will be redirected to canvas login page.
 After successfully login, the system will redirect us to catalog dashboard.
 
